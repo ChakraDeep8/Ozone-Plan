@@ -70,9 +70,8 @@ def calculate_compounding(staking_amount: float, years: int, start_date: datetim
                 "ROI": round(daily_roi, 4),
                 "Daily ROI": round(daily_return, 4),
                 "Days to Next 0.5": days_to_next_half,
-                "Staking Status": stake_status,
                 "Total 0.5 Units": total_half_units,
-                "Expire Date": stake_expire.strftime("%d %B %Y")
+                "Burning Date": stake_expire.strftime("%d %B %Y")
             }
             stake_history.append(stake)
             daily_roi = 0
@@ -85,11 +84,11 @@ def calculate_compounding(staking_amount: float, years: int, start_date: datetim
 
 def main():
     st.title("Compounding Staking Plan")
-    st.subheader("Staking Details")
+    st.subheader("Staking Details", divider="gray")
 
     staking_amount = st.number_input("Staking Amount", min_value=1.0, value=1.0, step=0.5)
     number_of_years = st.slider("Number of Years", min_value=1, max_value=10, value=1)
-    start_date = st.date_input("Date of Staking", value=datetime.today())
+    start_date = st.date_input("Date of Staking", value=datetime.today(), format="DD/MM/YYYY")
 
     if st.button("Generate Table"):
         start_date = datetime.combine(start_date, datetime.min.time())
@@ -97,7 +96,7 @@ def main():
         st.success("Compounding Table Generated Successfully!")
         st.write(compounding_table)
         st.download_button(
-            "Download Table as CSV",
+            "Download",
             compounding_table.to_csv(index=False),
             "compounding_staking_table.csv",
             "text/csv"

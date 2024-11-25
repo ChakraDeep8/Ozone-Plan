@@ -2,9 +2,11 @@ import streamlit as st
 import pandas as pd
 
 # Input fields
-st.subheader("Staking Details")
+
 
 def normal():
+    st.title("Normal Staking Plan")
+    st.subheader("Staking Details", divider="gray")
     staking_amount = st.number_input("Enter Staking Amount:", value=1.0, min_value=0.5, step=0.1)
     number_of_years = st.slider("Select Number of Years:", min_value=1, max_value=13, value=10)
 
@@ -49,9 +51,14 @@ def normal():
                 daily_rate = (daily_rate - 0.05)
 
         # Convert data to DataFrame and display
+        st.write(f"Final Year Returns: {round(returns)}")
         df = pd.DataFrame(roi_data, columns=["Year", "Invested Coin", "Calculation", "Returns", "Remarks"])
         st.subheader("Returns Summary")
         st.table(df)
+        st.download_button(
+            "Download",
+            df.to_csv(index=False),
+            "compounding_staking_table.csv",
+            "text/csv"
+        )
 
-        # Display Final Message
-        st.write(f"Final Year Returns: {round(returns)}")

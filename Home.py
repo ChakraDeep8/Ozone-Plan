@@ -2,9 +2,10 @@ import streamlit as st
 import base64
 
 def home():
+
     # Title and Description
     st.header("Ozone Chain Project")
-    st.subheader("Revolutionizing Blockchain with AI and PoS Technology", divider="gray")
+    st.subheader("Revolutionizing Blockchain with AI and PoS Technology", divider="rainbow")
     st.write(
         "The Ozone Chain is a cutting-edge blockchain network utilizing Proof-of-Stake (PoS) for sustainable and efficient decentralized solutions. "
         "Explore the white paper and learn more about its innovative features."

@@ -3,19 +3,10 @@ from streamlit_option_menu import option_menu
 from Normal import normal
 from Compounding import main
 from Home import home
-from PIL import Image
-import os
 
-path = os.path.join("res", "ozone.jpg")
-logo = Image.open(path)
-st.set_page_config(
-    page_title="MetaOzone Plan Calculator",
-    page_icon=logo,
-    layout="wide",
-)
 
 # 1=sidebar menu, 2=horizontal menu, 3=horizontal menu w/ custom menu
-EXAMPLE_NO = 3
+EXAMPLE_NO = 2
 
 
 with open("style.css") as css:
@@ -26,8 +17,8 @@ def streamlit_menu(example=3):
         # 2. horizontal menu w/o custom style
         selected = option_menu(
             menu_title=None,  # required
-            options=["Home", "Projects", "Contact"],  # required
-            icons=["house", "book", "envelope"],  # optional
+            options=["Home", "Normal", "Compounding"],  # required
+            icons=["house", "calculator", "graph-up"],  # optional
             menu_icon="cast",  # optional
             default_index=0,  # optional
             orientation="horizontal",
@@ -39,7 +30,7 @@ def streamlit_menu(example=3):
         selected = option_menu(
             menu_title=None,  # required
             options=["Home", "Normal", "Compounding"],  # required
-            icons=["house", "book", "envelope"],  # optional
+            icons=["house", "calculator", "graph-up"],  # optional
             menu_icon="cast",  # optional
             default_index=0,  # optional
             orientation="horizontal",
