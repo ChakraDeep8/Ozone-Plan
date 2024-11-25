@@ -1,1 +1,5 @@
-streamlit
+streamlit~=1.37.1
+pandas~=2.2.2
+opencv-python~=4.10.0.84
+numpy~=1.26.4
+pyzbar~=0.1.9
