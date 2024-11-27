@@ -2,10 +2,12 @@ import streamlit as st
 from Normal import normal
 from Compounding import main
 from Home import home
+from PIL import Image
 
+icon = Image.open("res/ozone.jpg")
 st.set_page_config(
     page_title="Ozone Chain Project",
-    page_icon=":chart:",
+    page_icon=icon,
     layout="wide",
     initial_sidebar_state="collapsed"
 )
