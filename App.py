@@ -19,5 +19,5 @@ if page == "🏠 Home":
     home()
 elif page == "📊 Normal Staking Plan":
     normal()
-elif page == "📈 Compounding Staking Plan":
+elif page == "📈 Compound Staking Plan":
     main()
