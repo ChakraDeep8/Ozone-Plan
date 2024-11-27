@@ -13,7 +13,7 @@ st.set_page_config(
 )
 # Set Home page as default
 st.title("Ozone Chain Project")
-page = st.selectbox("Select Plan 👇", ["🏠 Home", "📊 Normal Staking Plan", "📈 Compounding Staking Plan"])
+page = st.selectbox("Select Plan 👇", ["🏠 Home", "📊 Normal Staking Plan", "📈 Compound Staking Plan"])
 
 if page == "🏠 Home":
     home()
