@@ -52,13 +52,13 @@ def main_app():
                 switch_language(lang)
 
     # Page content
-
+    st.header(translations["app"]["title"][st.session_state.language], divider="rainbow")
 
     # Add Lottie animation below the title
     lottie_animation = load_lottiefile("res/Crypo_ozone.json")  # Path to your Lottie file
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.header(translations["app"]["title"][st.session_state.language],divider="rainbow")
+
         st_lottie(lottie_animation, height=400, key="lottie")
 
 
