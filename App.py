@@ -28,10 +28,10 @@ def load_translations(file_path):
 def apply_theme(theme_name):
     if theme_name == "Dark":
         st._config.set_option("theme.base", "light")
-        st._config.set_option("theme.primaryColor", "#ffffff")
+        st._config.set_option("theme.primaryColor", "#D02E2E")
     elif theme_name == "Light":
         st._config.set_option("theme.base", "dark")
-        st._config.set_option("theme.primaryColor", "#0e1117")
+        st._config.set_option("theme.primaryColor", "#D02E2E")
 
 # Switch language
 def switch_language(language):
