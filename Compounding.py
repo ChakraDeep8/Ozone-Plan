@@ -86,7 +86,7 @@ def main():
     st.title("Compounding Staking Plan")
     st.subheader("Staking Details", divider="gray")
 
-    staking_amount = st.number_input("Staking Amount", min_value=1.0, value=1.0, step=0.5)
+    staking_amount = st.number_input("Staking Amount", min_value=0.5, value=1.0, step=0.5)
     number_of_years = st.slider("Number of Years", min_value=1, max_value=10, value=1)
     start_date = st.date_input("Date of Staking", value=datetime.today(), format="DD/MM/YYYY")
 
