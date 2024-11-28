@@ -67,7 +67,7 @@ def calculate_compounding(staking_amount: float, years: int, start_date: datetim
             stake = {
                 "Stake Date": current_date.strftime("%d %B %Y"),
                 "Staking Amount": round(staking_amount, 4),
-                "ROI": round(daily_roi, 4),
+                "Present Wallet Balance": round(daily_roi, 4),
                 "Daily ROI": round(daily_return, 4),
                 "Days to Next 0.5": days_to_next_half,
                 "Total 0.5 Units": total_half_units,
