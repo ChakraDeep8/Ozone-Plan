@@ -24,15 +24,6 @@ def load_translations(file_path):
     with open(file_path, "r", encoding="utf-8") as file:
         return json.load(file)
 
-# Apply theme
-def apply_theme(theme_name):
-    if theme_name == "Dark":
-        st._config.set_option("theme.base", "light")
-        st._config.set_option("theme.primaryColor", "#D02E2E")
-    elif theme_name == "Light":
-        st._config.set_option("theme.base", "dark")
-        st._config.set_option("theme.primaryColor", "#D02E2E")
-
 # Switch language
 def switch_language(language):
     st.session_state.language = language
@@ -44,8 +35,6 @@ def main_app():
     # Sidebar for language selection
     with st.sidebar:
         st.sidebar.title(translations["common"]["Settings"][st.session_state.language])
-        theme = st.radio("Choose Theme:", ["Light", "Dark"], index=1)
-        apply_theme(theme)
         st.sidebar.subheader(translations["common"]["select_language"][st.session_state.language])
         for lang, lang_name in [("en", "English"), ("bn", "বাংলা"), ("hi", "हिंदी")]:
             if st.sidebar.button(lang_name):
