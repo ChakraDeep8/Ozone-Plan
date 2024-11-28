@@ -1,21 +1,36 @@
 import streamlit as st
 from streamlit_pdf_viewer import pdf_viewer
-from PIL import Image
-from streamlit_lottie import st_lottie
-
-def home():
-    st.subheader("Revolutionizing Blockchain with AI and PoS Technology", divider="rainbow")
-    st.write(
-        "The Ozone Chain is a cutting-edge blockchain network utilizing Proof-of-Stake (PoS) for sustainable and efficient decentralized solutions. "
-        "Explore the white paper and learn more about its innovative features."
-    )
-    st.markdown("##### Explore More 👇")
+import requests
 
 
-    st.write(
-        "Browse the Ozone Chain white paper to gain in-depth insights into the platform's architecture, governance, and tokenomics."
-    )
+def download_pdf(pdf_url=None, button_text=None):
+    """Downloads the PDF file using st.download_button."""
+    try:
+        response = requests.get(pdf_url, stream=True)
+        response.raise_for_status()  # Raise an error for bad HTTP status codes
+
+        # Create a downloadable button
+        st.download_button(
+            label=button_text,
+            data=response.content,
+            file_name="MetaOzone_White_Paper.pdf",
+            mime="application/pdf",
+        )
+    except requests.exceptions.RequestException as e:
+        st.error(f"Error downloading the PDF: {e}")
+
+
+def home(translations, lang):
+    st.subheader(translations["home"]["subheader"][lang], divider="rainbow")
+    st.write(translations["home"]["description"][lang])
+    st.markdown(f"##### {translations['common']['download'][lang]} 👇")
 
     # Embed the PDF Viewer
-    pdf_url = "res/Ozone-white-paper.pdf"
-    pdf_viewer(pdf_url)
+    local_pdf_url = "res/Ozone-white-paper.pdf"  # Local PDF file path
+    pdf_github_url = "https://raw.githubusercontent.com/ChakraDeep8/Ozone-Plan/main/res/Ozone-white-paper.pdf"
+
+    # Button to download PDF
+    download_pdf(pdf_github_url, button_text=translations["home"]["whitepaper"][lang])
+
+    # Display PDF in Viewer
+    pdf_viewer(local_pdf_url)
