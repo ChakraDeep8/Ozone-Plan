@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import json
 from Plans.Normal import normal
@@ -12,7 +13,10 @@ def load_lottiefile(filepath: str):
     with open(filepath, "r") as f:
         return json.load(f)
 
-icon = Image.open("res/ozone.jpg")
+# Define resource directory
+RESOURCE_DIR = os.path.join(os.path.dirname(__file__), 'res')
+
+icon = Image.open(os.path.join(RESOURCE_DIR, "ozone.jpg"))
 st.set_page_config(
     page_title="Ozone Chain Project",
     page_icon=icon,
@@ -31,7 +35,8 @@ def switch_language(language):
 
 # Main app
 def main_app():
-    translations = load_translations("res/translations.json")
+    translations_path = os.path.join(RESOURCE_DIR, "translations.json")
+    translations = load_translations(translations_path)
 
     # Sidebar for language selection
     with st.sidebar:
@@ -45,12 +50,10 @@ def main_app():
     st.header(translations["app"]["title"][st.session_state.language], divider="rainbow")
 
     # Add Lottie animation below the title
-    lottie_animation = load_lottiefile("res/Crypo_ozone.json")  # Path to your Lottie file
+    lottie_animation = load_lottiefile(os.path.join(RESOURCE_DIR, "Crypo_ozone.json"))
     col1, col2, col3 = st.columns(3)
     with col1:
-
         st_lottie(lottie_animation, height=400, key="lottie")
-
 
     page = st.selectbox(
         translations["app"]["select_plan"][st.session_state.language],
@@ -70,7 +73,6 @@ def main_app():
         half()
     elif page == translations["app"]["full_compound_plan"][st.session_state.language]:
         full()
-
 
 if __name__ == "__main__":
     if "language" not in st.session_state:
