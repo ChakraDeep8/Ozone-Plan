@@ -1,8 +1,9 @@
 import streamlit as st
 import json
-from Normal import normal
-from Compounding import main
-from Home import home
+from Plans.Normal import normal
+from Plans.Half_Coin_Compounding import half
+from Plans.Home import home
+from Plans.Full_Coin_Compounding import full
 from PIL import Image
 from streamlit_lottie import st_lottie  # Import Lottie renderer
 
@@ -30,7 +31,7 @@ def switch_language(language):
 
 # Main app
 def main_app():
-    translations = load_translations("translations.json")
+    translations = load_translations("res/translations.json")
 
     # Sidebar for language selection
     with st.sidebar:
@@ -56,7 +57,8 @@ def main_app():
         [
             translations["app"]["home"][st.session_state.language],
             translations["app"]["normal_plan"][st.session_state.language],
-            translations["app"]["compound_plan"][st.session_state.language],
+            translations["app"]["half_compound_plan"][st.session_state.language],
+            translations["app"]["full_compound_plan"][st.session_state.language]
         ]
     )
 
@@ -64,8 +66,11 @@ def main_app():
         home(translations, st.session_state.language)
     elif page == translations["app"]["normal_plan"][st.session_state.language]:
         normal()
-    elif page == translations["app"]["compound_plan"][st.session_state.language]:
-        main()
+    elif page == translations["app"]["half_compound_plan"][st.session_state.language]:
+        half()
+    elif page == translations["app"]["full_compound_plan"][st.session_state.language]:
+        full()
+
 
 if __name__ == "__main__":
     if "language" not in st.session_state:
